@@ -9,7 +9,7 @@ import { BASEPATH } from './config';
 function App() {
   async function GenerateAll(){
 
-    const statuses = [{BookingStatus:"bookingstatus", body: {name:"Test", description:"This is testing1"} }]
+  const statuses = [{BookingStatus:"bookingstatus", body: {name:"Test", description:"This is testing1"} }]
     let result = await fetch(BASEPATH + statuses[0].BookingStatus,{
       method:"POST",
       body:JSON.stringify(statuses[0].body),

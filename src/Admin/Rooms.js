@@ -20,5 +20,10 @@ function Rooms() {
     };
     fetchData();
   }, []);
+
+  return(<div>
+    
+  </div>
+  )
 }
 export default Rooms;

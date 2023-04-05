@@ -5,8 +5,11 @@ import { BASEPATH, ADMIN } from "../config";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [hotelData, setHotelData] = useState([]);
   const navigate = useNavigate();
+  useEffect(() => {
+    sessionStorage.clear(); //clear our storage so we cant access the form after logging out
+  });
+
   async function login() {
     const hashedPassword = await hashPassword(password);
     fetch(BASEPATH + "admins/" + username)
@@ -21,17 +24,16 @@ function Login() {
           //see if password matches
           if (resp.Password === hashedPassword) {
             sessionStorage.setItem("admin", username);
-            // GetHotelByAdmin(hotel = {hotelData}, setHotel = {setHotelData})
-           
-            console.log(username + " has succesfully logged in");
-            console.log(hotelData);
+            navigate("/panel")
+            // navigate("/panel");
           } else console.log(username + " has failed to logged in");
         }
       })
       .catch((err) => {
         console.log("Login failed " + err.message);
       });
-  }
+    }
+ 
   //#region Register
   async function Register() {
     const passwordHash = await hashPassword(password);
@@ -66,7 +68,6 @@ function Login() {
       return paddedHexCode;
     });
     return hexCodes.join("");
-    login();
   }
   //#endregion
   return (
