@@ -1,6 +1,6 @@
 
 import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom';
-import Hotel from './Admin/Hotel';
+import Hotel from './Admin/components/Hotel';
 import Login from './Admin/Login';
 import Panel from './Admin/Panel';
 import Settings from './Components/Settings';

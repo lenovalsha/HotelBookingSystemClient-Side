@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASEPATH, ADMIN } from "../config";
+import { BASEPATH} from "../config";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -24,8 +24,25 @@ function Login() {
           //see if password matches
           if (resp.Password === hashedPassword) {
             sessionStorage.setItem("admin", username);
-            navigate("/panel")
-            // navigate("/panel");
+            
+            //see if the user has a hotel associated with them
+            fetch(BASEPATH+"hotels/adminusername/"+username)
+            .then((r)=>{
+              return r.json();
+            }).then ((resp2)=>{
+              if((resp2).status === 404)
+              {
+                navigate("/hotel")
+              }else
+              {
+                let hotelId = resp2[0].Id;
+                sessionStorage.setItem("hotelId",hotelId);
+                navigate("/panel")
+              }
+              
+            })
+
+
           } else console.log(username + " has failed to logged in");
         }
       })

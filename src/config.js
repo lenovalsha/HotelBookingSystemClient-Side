@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 export const BASEPATH = "https://localhost:7285/api/";
-export let ADMIN = sessionStorage.getItem("admin");
-export let HOTELID = sessionStorage.getItem("hotelId");
+
 
 async function GetRoomsByHotelId() {
   const [roomList, setRoomList] = useState([]);

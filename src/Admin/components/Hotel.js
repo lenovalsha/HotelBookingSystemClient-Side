@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASEPATH,ADMIN } from "../config";
+import { BASEPATH} from "../../config";
 function Hotel(){
     let admin = sessionStorage.getItem("admin");
     const [name,setName] = useState("");
@@ -10,21 +10,21 @@ function Hotel(){
     const [postal,setPostal] = useState("");
     const [phone,setPhone] = useState("");
     const navigate = useNavigate();
-    if(ADMIN === null)
+    if(admin === null)
     {
         navigate("/register");
     }
-    async function RegisterHotel(props){
+    async function RegisterHotel(){
         let result = await fetch(BASEPATH + "hotels",{
         method:"POST",
         body: JSON.stringify({
-            adminusername : ADMIN,
-            name: props.name,
-            email:props.email,
-            address:props.address,
-            city:props.city,
-            postal:props.postal,
-            phone:props.phone
+            adminusername : admin,
+            name: name,
+            email:email,
+            address:address,
+            city:city,
+            postal:postal,
+            phone:phone
         }), headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
