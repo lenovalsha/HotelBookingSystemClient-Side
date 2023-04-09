@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASEPATH} from "../config";
+import { BASEPATH } from "../config";
+import { hashPassword } from "../config";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -24,33 +25,31 @@ function Login() {
           //see if password matches
           if (resp.Password === hashedPassword) {
             sessionStorage.setItem("admin", username);
-            
+
             //see if the user has a hotel associated with them
-            fetch(BASEPATH+"hotels/adminusername/"+username)
-            .then((r)=>{
-              return r.json();
-            }).then ((resp2)=>{
-              if((resp2).status === 404)
-              {
-                navigate("/hotel")
-              }else
-              {
-                let hotelId = resp2[0].Id;
-                sessionStorage.setItem("hotelId",hotelId);
-                navigate("/panel")
-              }
-              
-            })
-
-
+            fetch(BASEPATH + "hotels/adminusername/" + username)
+              .then((r) => {
+                return r.json();
+              })
+              .then((resp2) => {
+                if (username === "ADMIN") {
+                  navigate("/settings");
+                } else if (resp2.status === 404) {
+                  navigate("/hotel");
+                } else {
+                  let hotelId = resp2[0].Id;
+                  sessionStorage.setItem("hotelId", hotelId);
+                  navigate("/panel");
+                }
+              });
           } else console.log(username + " has failed to logged in");
         }
       })
       .catch((err) => {
         console.log("Login failed " + err.message);
       });
-    }
- 
+  }
+
   //#region Register
   async function Register() {
     const passwordHash = await hashPassword(password);
@@ -71,21 +70,21 @@ function Login() {
   //#endregion
 
   //#region Hasher
-  async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hash = await crypto.subtle.digest("SHA-256", data);
-    return hexString(hash);
-  }
-  function hexString(buffer) {
-    const byteArray = new Uint8Array(buffer);
-    const hexCodes = [...byteArray].map((value) => {
-      const hexCode = value.toString(16);
-      const paddedHexCode = hexCode.padStart(2, "0");
-      return paddedHexCode;
-    });
-    return hexCodes.join("");
-  }
+  // async function hashPassword(password) {
+  //   const encoder = new TextEncoder();
+  //   const data = encoder.encode(password);
+  //   const hash = await crypto.subtle.digest("SHA-256", data);
+  //   return hexString(hash);
+  // }
+  // function hexString(buffer) {
+  //   const byteArray = new Uint8Array(buffer);
+  //   const hexCodes = [...byteArray].map((value) => {
+  //     const hexCode = value.toString(16);
+  //     const paddedHexCode = hexCode.padStart(2, "0");
+  //     return paddedHexCode;
+  //   });
+  //   return hexCodes.join("");
+  // }
   //#endregion
   return (
     <div>

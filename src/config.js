@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
 export const BASEPATH = "https://localhost:7285/api/";
 
 
-async function GetRoomsByHotelId() {
-  const [roomList, setRoomList] = useState([]);
-  let admin = sessionStorage.getItem("admin");
-  //get the rooms
-  useEffect(() => {
-    const fetchData = async () => {
-      const resp = await fetch(BASEPATH + "/rooms/hotelId/" + admin);
-      if (!resp.ok) {
-        throw new Error(`HTTP error! status: ${resp.status}`);
-      }
-      const data = await resp.json();
-      setRoomList(data);
-      console.log(roomList);
-    };
-    fetchData();
-  }, []);
+export async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return hexString(hash);
+}
+function hexString(buffer) {
+  const byteArray = new Uint8Array(buffer);
+  const hexCodes = [...byteArray].map((value) => {
+    const hexCode = value.toString(16);
+    const paddedHexCode = hexCode.padStart(2, "0");
+    return paddedHexCode;
+  });
+  return hexCodes.join("");
 }

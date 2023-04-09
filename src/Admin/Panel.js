@@ -17,10 +17,7 @@ function Panel(){
     <h1>This is panel</h1>
     <h2>{admin}</h2>
     <h2>{hotelId}</h2>
-
     <Room/>
-    <Images fetch = "rooms" image = "roomImages"/>
-    <Images fetch = "hotels" image = "hotelImages"/>
     <AddStaff/>
     <Position/>
 

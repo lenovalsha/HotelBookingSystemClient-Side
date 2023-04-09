@@ -1,0 +1,17 @@
+/* MoreDetails Page */
+.calendars{
+    display: flex;
+    justify-content: center;
+}
+  /* Calendar === MoreDetailsPage */
+  .per-detail{
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+  }
+  .carousel-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+  }

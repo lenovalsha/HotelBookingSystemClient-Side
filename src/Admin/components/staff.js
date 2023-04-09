@@ -72,7 +72,7 @@ function AddStaff()
         <label>Position</label> 
         <select onChange={(e) => setPositionId(e.target.value)}>
             {
-              //loop through the list and add it as option
+               //loop through the list and add it as option
               positionList.map((prio) => (
                 <option value={prio.Id} key={prio.Id}>
                   {prio.Name}

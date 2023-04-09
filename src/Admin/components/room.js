@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { BASEPATH } from "../../config";
-
+import Images from "./images";
 function Room() {
   //variables
   const [floor, setFloor] = useState();
   const [roomNumber, setRoomNumber] = useState();
   const [description, setDescription] = useState("");
   const [roomStatusId, setRoomStatusId] = useState();
-  const [roomTypeId, setRoomTypeId] = useState();
+  const [roomTypeName, setRoomTypeName] = useState();
   const [baseRate, setBaseRate] = useState();
   //lists
   const [roomStatusList, setRoomStatusList] = useState([]);
@@ -37,7 +37,7 @@ function Room() {
     fetchData();
   }, []);
   async function AddRoom() {
-    const selectedRoomType = roomTypeList.find((p) => p.Id === roomTypeId);
+    const selectedRoomType = roomTypeList.find((p) => p.Name === roomTypeName);
     const selectedRoomStatus = roomStatusList.find(
       (p) => p.Id === roomStatusId
     );
@@ -53,7 +53,7 @@ function Room() {
         roomNumber: roomNumber,
         description: description,
         roomStatusId: roomStatusId,
-        roomTypeId: roomTypeId,
+        roomTypeName: roomTypeName,
         baseRate: baseRate,
       }),
       headers: {
@@ -62,6 +62,7 @@ function Room() {
       },
     });
     result = await result.json();
+    sessionStorage.setItem("roomId",result.Id);
   }
   return (
     <div>
@@ -102,18 +103,18 @@ function Room() {
           ))
         }
       </select>
-      <select onChange={(e) => setRoomTypeId(e.target.value)}>
+      <select onChange={(e) => setRoomTypeName(e.target.value)}>
         {
           //loop through the list and add it as option
           roomTypeList.map((prio) => (
-            <option value={prio.Id} key={prio.Id}>
+            <option value={prio.Name} key={prio.Id}>
               {prio.Name}
             </option>
           ))
         }
       </select>
-
       <button onClick={AddRoom}>Register Room</button>
+      <Images roomId = {sessionStorage.getItem("roomId")}/>
     </div>
   );
 }
