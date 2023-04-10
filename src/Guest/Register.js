@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 import { BASEPATH } from "../config";
 import { hashPassword } from "../config";
+import Navbar from "../Components/Navbar";
 
-export function Register(){
+
+export default function Register(){
 
     const [fname,setFname] = useState("");
     const [lname,setLname] = useState(""); 
@@ -38,22 +41,21 @@ export function Register(){
         console.log("Guest succesfully registered");
     }
     return(<div>
-        <label>First Name</label>
-        <input type="text" value={fname} onChange={(e)=> setFname(e.target.value)}/>
-        <label>Last Name</label>
-        <input type="text" value={lname} onChange={(e)=> setLname(e.target.value)}/>
-        <label>Email</label>
-        <input type="text" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-        <label>Address</label>
-        <input type="text" value={address} onChange={(e)=> setAddress(e.target.value)}/>
-        <label>City</label>
-        <input type="text" value={city} onChange={(e)=> setCity(e.target.value)}/>
-        <label>Postal</label>
-        <input type="text" value={postal} onChange={(e)=> setPostal(e.target.value)}/>
-        <label>Phone</label>
-        <input type="text" value={phone} onChange={(e)=> setPhone(e.target.value)}/>
-        <label>Password</label>
-        <input type="password" value={password} onChange={(e)=> setPassord(e.target.value)}/>
+        <Navbar/>
+        <h1>Register</h1>
+        <section className="sub">
+        <input type="text" value={fname} onChange={(e)=> setFname(e.target.value)} placeholder="First Name"/>
+        <input type="text" value={lname} onChange={(e)=> setLname(e.target.value)} placeholder="Last Name"/>
+        <input type="text" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Emal"/>
+        <input type="text" value={address} onChange={(e)=> setAddress(e.target.value)} placeholder="Address"/>
+        <input type="text" value={city} onChange={(e)=> setCity(e.target.value)} placeholder="City"/>
+        <input type="text" value={postal} onChange={(e)=> setPostal(e.target.value)} placeholder="Postal"/>
+        <input type="text" value={phone} onChange={(e)=> setPhone(e.target.value)} placeholder="Phone"/>
+        <input type="password" value={password} onChange={(e)=> setPassord(e.target.value)} placeholder="Password"/>
         <button onClick={RegisterGuest}>Register</button>
+        <Link to="/glogin">
+            <p>Already a member? Login</p>
+        </Link>
+        </section>
     </div>)
 }

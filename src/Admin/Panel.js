@@ -2,10 +2,10 @@
 import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASEPATH} from "../config";
-import Room from "./components/room"; //move this later
+import AddRoom from "./components/room"; //move this later
 import Images from "./components/images";
-import AddStaff from "./components/staff";
-import Position from "./components/position";
+import Register from "./components/staff";
+import Navbar from "./Navbar";
 
 function Panel(){
     
@@ -14,13 +14,12 @@ function Panel(){
     
     return(
         <div>
+        <Navbar/>
     <h1>This is panel</h1>
     <h2>{admin}</h2>
     <h2>{hotelId}</h2>
-    <Room/>
-    <AddStaff/>
-    <Position/>
-
+    <AddRoom/>
+    <Register/>
     </div>
  
     )

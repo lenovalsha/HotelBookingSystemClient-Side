@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BASEPATH } from "../config";
 import { Link } from "react-router-dom";
 
-function Hotels() {
+function Hotel() {
     const [hotelList, setHotelList] = useState([]);
   
 
@@ -33,4 +33,4 @@ function Hotels() {
       </div>
     );
   }
-  export default Hotels;
+  export default Hotel;

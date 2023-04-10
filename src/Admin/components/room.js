@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { BASEPATH } from "../../config";
 import Images from "./images";
-function Room() {
+import { useParams, Link } from "react-router-dom";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Navbar from "../Navbar";
+function AddRoom() {
   //variables
   const [floor, setFloor] = useState();
   const [roomNumber, setRoomNumber] = useState();
@@ -119,4 +123,62 @@ function Room() {
   );
 }
 
-export default Room;
+export default AddRoom;
+export function ShowRooms() {
+  const { Id } = useParams();
+  let HOTELID = sessionStorage.getItem("hotelId");
+  const [roomList, setRoomList] = useState([]);
+  const [imageList, setImageList] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const resp = await fetch(
+        BASEPATH + "rooms/hotelId/" + HOTELID 
+      );
+      const data = await resp.json();
+      //get a list of images per room
+      setRoomList(data);
+    }
+    fetchData();
+  }, [Id]);
+  useEffect(() => {
+    async function fetchImages() {
+      const resp = await fetch(BASEPATH + `roomImages/hotelId/${HOTELID}`);
+      const images = await resp.json();
+      setImageList(images);
+    }
+    fetchImages();
+  }, [Id]);
+  return (
+    <div> 
+    <Navbar/>
+    <h1>All Rooms</h1>
+    {roomList.map((r) => (
+      <div className="per-detail">
+        <h2>Type:{r.RoomTypeName || "Unknown"}</h2>
+        <p>Floor: {r.Floor}</p>
+        <p>Room: {r.RoomNumber}</p>
+        <p>Base Rate:{r.BaseRate}</p>
+        <div className="images">
+          <Carousel infiniteLoop  className="carousel-wrapper">
+            {imageList
+              .filter((i) => i.RoomNumber === r.RoomNumber)
+              .map((img) => (
+                <div>
+                  {console.log("This is roomnumber" + img.RoomNumber)}
+                  <h1>{img.id}</h1>
+                  <img
+                    key={img.Id}
+                    src={`data:image/png;base64, ${img.Image}`}
+                    alt={img.altText}
+                  />
+                </div>
+              ))}
+          </Carousel>
+        </div>
+      </div>
+    ))}
+
+  </div>
+);
+}

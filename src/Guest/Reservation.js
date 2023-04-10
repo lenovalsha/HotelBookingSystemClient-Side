@@ -15,7 +15,7 @@ function Reservation() {
   let guest = sessionStorage.getItem("guest");
   useEffect(() => {
     if (guest === null || guest === "") {
-      navigate("/guestlogin");
+      navigate("/glogin");
     }
   }, []);
   console.log(guest);

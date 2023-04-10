@@ -69,27 +69,11 @@ function Login() {
   }
   //#endregion
 
-  //#region Hasher
-  // async function hashPassword(password) {
-  //   const encoder = new TextEncoder();
-  //   const data = encoder.encode(password);
-  //   const hash = await crypto.subtle.digest("SHA-256", data);
-  //   return hexString(hash);
-  // }
-  // function hexString(buffer) {
-  //   const byteArray = new Uint8Array(buffer);
-  //   const hexCodes = [...byteArray].map((value) => {
-  //     const hexCode = value.toString(16);
-  //     const paddedHexCode = hexCode.padStart(2, "0");
-  //     return paddedHexCode;
-  //   });
-  //   return hexCodes.join("");
-  // }
-  //#endregion
   return (
-    <div>
+    <div className="container">
       <h2>Register/Login</h2>
-      <label>Username:</label>
+      <section className="sub container">
+
       <input
         type="text"
         value={username}
@@ -97,8 +81,6 @@ function Login() {
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       />
-      <label>Password:</label>
-
       <input
         type="password"
         value={password}
@@ -108,6 +90,8 @@ function Login() {
       />
       <button onClick={Register}>Register</button>
       <button onClick={login}>Login</button>
+      </section>
+      
     </div>
   );
 }

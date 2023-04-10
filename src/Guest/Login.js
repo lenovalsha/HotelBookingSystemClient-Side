@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { hashPassword,BASEPATH } from "../config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 function Login(){
     sessionStorage.clear();
     const [email,setEmail] = useState("");
@@ -30,11 +31,16 @@ function Login(){
           });
         }
     return(<div>
-        <label>Username</label>
-        <input type="text" onChange={(e)=> setEmail(e.target.value)} value={email}/>
-        <label>Password</label>
-        <input type="password" onChange={(e)=> setPassword(e.target.value)} value={password}/>
+        <Navbar/>
+        <h1>Login</h1>
+        <div className="sub">
+        <input type="text" onChange={(e)=> setEmail(e.target.value)} value={email} placeholder="Email"/>
+        <input type="password" onChange={(e)=> setPassword(e.target.value)} value={password} placeholder="Password"/>
         <button onClick={LoginGuest}>Login</button>
+        <Link to="/gregister">
+            <p>Not a member? Register</p>
+        </Link>
+        </div>
     </div>)
 }
 export default Login;

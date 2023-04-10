@@ -8,8 +8,11 @@ import Dashboard from './Admin/Dashboard';
 import MoreDetails from './Components/moreDetails';
 import Reservation from './Guest/Reservation';
 import Glogin from './Guest/Login';
-import { Register } from './Guest/Register';
+import  GRegister  from './Guest/Register';
 import Settings from './Components/Settings';
+import Application from './Application';
+import StaffRegister,{ StaffLogin,StaffList } from './Admin/components/staff';
+import { ShowRooms } from './Admin/components/room';
 
 function App() {
   return (
@@ -18,12 +21,17 @@ function App() {
         <Routes>
           <Route path='/settings' element={<Settings/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/register' element={<Login/>}/>
+          <Route path='/adminlogin' element={<Login/>}/>
           <Route path='/hotel' element={<Hotel/>}/>
           <Route path='/panel' element={<Panel/>}/>
+          <Route path='/applications' element={<Application/>}/>
           <Route path='/home' element={<Home/>}/>
-          <Route path='/guestregister' element={<Register/>}/>
-          <Route path='/guestlogin' element={<Glogin/>}/>
+          <Route path='/glogin' element={<Glogin/>}/>
+          <Route path='/gRegister' element={<GRegister/>}/>
+          <Route path='/slogin' element={<StaffLogin/>}/>
+          <Route path='/sregister' element={<StaffRegister/>}/>
+          <Route path='/staffs' element={<StaffList/>}/>
+          <Route path='/rooms' element={<ShowRooms/>}/>
           <Route path='/moreDetails/:Id'element={<MoreDetails/>}/>
           <Route path='/reservations/:hotelId/:roomId/:baseRate/:arrival/:departure'element={<Reservation/>}/>
           <Route path='/searchRooms'element={<MoreDetails/>}/>
