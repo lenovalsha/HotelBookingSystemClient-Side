@@ -8,6 +8,7 @@ import { BASEPATH, COMPANY } from "./config";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Footer from "./Components/footer";
+
 function Home() {
   const [arrivalDate, setArrivalDate] = useState(
     new Date().toISOString().split("T"[0])
@@ -40,8 +41,8 @@ function Home() {
   };
   return (
     <>
-      <Navbar />
-
+      <Navbar/>
+      <HomeCarousel />
       <div className="selectors">
         <div>
           <Provinces setProv={setProvince} />
@@ -57,21 +58,24 @@ function Home() {
           label="Departure Date:"
         />
         <button className="search" onClick={handleAvailabilityCheck}>
-          Search
+        <i class="fa-solid fa-magnifying-glass"/>
         </button>
       </div>
-      <HomeCarousel />
       <div className="body">
       <Map />
       <div className="hotels">
         {availableHotels.map((hotel) => (
           <div key={hotel.Id}>
-            <h1>{hotel.Name}</h1>
             <img
               src={`data:image/png;base64,${hotel.Image}`}
               alt={hotel.Name}
               onError={(e) => console.log("Failed to load image", e)}
             />
+            <h1>{hotel.Name}</h1>
+            <p>City: {hotel.City}</p>
+            <p>Province: {hotel.Province}</p>
+
+
             <Link
               to={`/moreDetails/${hotel.Id}/${arrivalDate}/${departureDate}`}
             >
@@ -80,6 +84,7 @@ function Home() {
           </div>
         ))}
       </div>
+      <h2>About {COMPANY}</h2>
       <section className="about">
       <About
         title={COMPANY + " global hotel search"}

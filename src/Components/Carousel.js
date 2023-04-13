@@ -1,7 +1,6 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Images from "./imageEntry";
-
+import Navbar from "../Guest/Navbar";
 export default function HomeCarousel() {
   const images = [
     { id: "1", image: "../images/image1.jpg" },
@@ -10,9 +9,13 @@ export default function HomeCarousel() {
   ];
   return (
     <div className="main-image">
+    
       <Carousel autoPlay={true} infiniteLoop showArrows={false}  showThumbs={false} >
         {images.map((e) => (
+          <div className="vignette">
+
           <img key={e.id} src={e.image}  onError={() => console.log(`Error loading image ${e.id}`)} style={{ height: "500px", objectFit: "cover" }} />
+          </div>
         ))}
       </Carousel>
     </div>

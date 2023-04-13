@@ -13,6 +13,7 @@ function MoreDetails(props) {
   const { Id,arrDate,depDate } = useParams();
   const [roomList, setRoomList] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [count,setCount] = useState(0);
   const [arrivalDate, setArrivalDate] = useState(new Date().toISOString().split("T"[0]));
   const [departureDate, setDepartureDate] = useState(new Date().toISOString().split("T"[0]));
   const [availableRooms, setAvailableRooms] = useState([]);
@@ -25,9 +26,13 @@ function MoreDetails(props) {
       );
       const data = await resp.json();
       setAvailableRooms(data);
+      
     }
     fetchData();
+    
+   
   }, [Id]);
+
   useEffect(() => {
     async function fetchImages() {
       const resp = await fetch(BASEPATH + `roomImages/hotelId/${Id}`);
@@ -45,6 +50,10 @@ function MoreDetails(props) {
     );
     const data = await resp.json();
     setAvailableRooms(data);
+      setCount(0);
+    availableRooms.forEach(() => {
+      setCount(count + 1);
+    });
   };
   return (
     <>
@@ -60,10 +69,10 @@ function MoreDetails(props) {
           setDate={setDepartureDate}
           label="Departure Date:"
         />
-        <button onClick={handleAvailabilityCheck}>Search</button>
+        <button className="search" onClick={handleAvailabilityCheck}>Search</button>
       </div>
       <div className="body">
-        <h1>AVAILABLE ROOMS</h1>
+        <h1>AVAILABLE ROOMS: {count}</h1>
         {availableRooms.map((r) => (
           <div className="per-detail">
               <Carousel
@@ -71,18 +80,17 @@ function MoreDetails(props) {
                 infiniteLoop
                 showArrows={false}
                 showThumbs={false}
-               
               >
                 {imageList
                   .filter((i) => i.RoomNumber === r.RoomNumber)
                   .map((img) => (
+                    
                     <div>
                       {console.log("This is roomnumber" + img.RoomNumber)}
                       <img
                         key={img.Id}
                         src={`data:image/png;base64, ${img.Image}`}
                         alt={img.altText}
-                        
                       />
                     </div>
                   ))}
