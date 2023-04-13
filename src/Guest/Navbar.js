@@ -6,6 +6,7 @@ function Navbar(){
         <nav>
             <ul>
                 <li><Link to="/home">Home</Link></li>
+                <li><Link to="/myreservations">My Reservations</Link></li>
                 <li><Link to="/gregister">Register</Link></li>
                 <li><Link to="/glogin">Login</Link></li>
             </ul>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { hashPassword,BASEPATH } from "../config";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../Components/Navbar";
+import Navbar from "./Navbar";
 function Login(){
     sessionStorage.clear();
     const [email,setEmail] = useState("");

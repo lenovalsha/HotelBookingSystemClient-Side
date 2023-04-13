@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 function Dashboard()
 {
     let admin = sessionStorage.getItem("admin")
-   return(<div className="container">
+   return(<div className="">
     <Navbar/>
     <h1>Good morning {admin}</h1>
     <div className="flex">
@@ -15,7 +15,6 @@ function Dashboard()
             <h3>Arriving</h3>
             <h3>Departing</h3>
             <h3>In-House</h3>
-
         </div>
     </section>
     <section>

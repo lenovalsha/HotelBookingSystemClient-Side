@@ -128,6 +128,35 @@ a:hover {
  
 }
 /* HOME PAGE */
+.selectors{
+  display: flex;
+  margin: 0 auto;
+  width:50%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.province-selector select{
+  width: 300px;
+  font-size: 15px;
+  position: relative;
+  top: 50%;
+}
+.datepicker input{
+  width: 300px;
+}
+.search{
+  position: relative;
+  height: 25px;
+  top: 20px;
+}
+.hotels{
+  display: flex;
+  flex-wrap: wrap;
+}
+.hotels > div{
+  flex: 33%;
+  border: 1px solid black;
+}
 .main-image, .images {
   position: relative;
 }

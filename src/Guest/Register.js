@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom";
 import { BASEPATH } from "../config";
 import { hashPassword } from "../config";
-import Navbar from "../Components/Navbar";
+import Navbar from "./Navbar";
 
 
 export default function Register(){

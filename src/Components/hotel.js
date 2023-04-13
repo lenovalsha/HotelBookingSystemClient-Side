@@ -17,6 +17,8 @@ function Hotel() {
     return (
       <div>
         <h1>Hotels</h1>
+        <div className="hotels">
+
         {hotelList.map((hotel) => (
           <div key={hotel.Id}>
             <h1>{hotel.Name}</h1>
@@ -31,6 +33,7 @@ function Hotel() {
           </div>
         ))}
       </div>
+        </div>
     );
   }
   export default Hotel;

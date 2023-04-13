@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Navbar from "../Navbar";
-function AddRoom() {
+export default function AddRoom({onClose}) {
   //variables
   const [floor, setFloor] = useState();
   const [roomNumber, setRoomNumber] = useState();
@@ -118,17 +118,18 @@ function AddRoom() {
         }
       </select>
       <button onClick={AddRoom}>Register Room</button>
+      <button className="close" onClick={onClose}>X</button>
       <Images roomId = {sessionStorage.getItem("roomId")}/>
     </div>
   );
 }
-
-export default AddRoom;
 export function ShowRooms() {
   const { Id } = useParams();
   let HOTELID = sessionStorage.getItem("hotelId");
   const [roomList, setRoomList] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [showRoom, setShowRoom] = useState(false);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -153,6 +154,17 @@ export function ShowRooms() {
     <div> 
     <Navbar/>
     <h1>All Rooms</h1>
+    <button
+            onClick={() =>
+              {setShowRoom(true)}
+            }
+            disabled={false}
+          >
+            Add A Room
+          </button>
+          {showRoom && (
+        <AddRoom onClose={()=>{setShowRoom(false)}}/>
+      )}
     {roomList.map((r) => (
       <div className="per-detail">
         <h2>Type:{r.RoomTypeName || "Unknown"}</h2>

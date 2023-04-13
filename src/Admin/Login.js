@@ -39,7 +39,7 @@ function Login() {
                 } else {
                   let hotelId = resp2[0].Id;
                   sessionStorage.setItem("hotelId", hotelId);
-                  navigate("/panel");
+                  navigate("/dashboard");
                 }
               });
           } else console.log(username + " has failed to logged in");

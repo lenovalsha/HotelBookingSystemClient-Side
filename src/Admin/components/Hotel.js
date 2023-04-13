@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASEPATH} from "../../config";
+import Provinces from "../../Components/province";
 function Hotel(){
     let admin = sessionStorage.getItem("admin");
     const [name,setName] = useState("");
@@ -9,6 +10,7 @@ function Hotel(){
     const [city,setCity] = useState("");
     const [postal,setPostal] = useState("");
     const [phone,setPhone] = useState("");
+    const [province,setProvince] = useState("");
     const [image,setImage] = useState(null);
 
     const navigate = useNavigate();
@@ -45,6 +47,7 @@ function Hotel(){
                 address: address,
                 city: city,
                 postal: postal,
+                province:province,
                 phone: phone,
                 image: base64Image,
               }),
@@ -76,6 +79,7 @@ function Hotel(){
         <input value={city} onChange={(e) => setCity(e.target.value) } type="text"/>
         <label>Postal</label> 
         <input value={postal} onChange={(e) => setPostal(e.target.value) } type="text"/>
+        <Provinces setProv={setProvince}/>
         <label>Phone</label> 
         <input value={phone} onChange={(e) => setPhone(e.target.value) } type="text"/>
         <input className="file" type="file"  onChange={onImageChange} accept="image/*"/>

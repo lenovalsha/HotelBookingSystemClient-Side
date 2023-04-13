@@ -42,10 +42,10 @@ export default function StaffRegister()
         result = await result.json();
         alert("ADDED")
     }
-    return(<div className="container">
+    return(<div className="">
     <Navbar/>
         <h1>Register A Staff</h1>
-        <section className="sub container">
+        <section className="sub">
         <input value={fname} onChange={(e) => setFName(e.target.value) } type="text" placeholder="First Name"/>
         <input value={lname} onChange={(e) => setLName(e.target.value) } type="text" placeholder="Last Name"/>
         <input value={email} onChange={(e) => setEmail(e.target.value) } type="text" placeholder="Email"/>
