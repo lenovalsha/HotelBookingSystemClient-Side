@@ -149,6 +149,7 @@ a:hover {
   text-align: center;
   margin: 0 auto;
   color: black;
+  position: relative;
 }
 
 .navbar h1, .navbar nav ul li{
@@ -165,7 +166,7 @@ a:hover {
   margin: 0 auto;
   width:50%;
   margin-bottom: 50px;
-  margin-top: 200px;
+  margin-top: 100px;
   border: 5px solid #febb02;
   height: 50px;
   color:black;
@@ -228,7 +229,6 @@ section.about > div{
 .main-image {
   position: relative;
   background-image: linear-gradient(to right, black,white,black);
-  top:100px;
 }
 .vignette{
   width: 50%;
@@ -266,7 +266,8 @@ section.about > div{
   height:300px;
   text-align:center ;
   align-items: center;
-  
+  border: 1px solid gray;
+  background-color: red;
 }
 .per-detail .carousel{
   max-width: 200px;

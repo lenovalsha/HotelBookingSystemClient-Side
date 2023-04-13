@@ -13,11 +13,9 @@ function MoreDetails(props) {
   const { Id,arrDate,depDate } = useParams();
   const [roomList, setRoomList] = useState([]);
   const [imageList, setImageList] = useState([]);
-  const [count,setCount] = useState(0);
   const [arrivalDate, setArrivalDate] = useState(new Date().toISOString().split("T"[0]));
   const [departureDate, setDepartureDate] = useState(new Date().toISOString().split("T"[0]));
   const [availableRooms, setAvailableRooms] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       const resp = await fetch(
@@ -26,7 +24,6 @@ function MoreDetails(props) {
       );
       const data = await resp.json();
       setAvailableRooms(data);
-      
     }
     fetchData();
     
@@ -50,10 +47,7 @@ function MoreDetails(props) {
     );
     const data = await resp.json();
     setAvailableRooms(data);
-      setCount(0);
-    availableRooms.forEach(() => {
-      setCount(count + 1);
-    });
+    
   };
   return (
     <>
@@ -71,8 +65,9 @@ function MoreDetails(props) {
         />
         <button className="search" onClick={handleAvailabilityCheck}>Search</button>
       </div>
+      {/* show all available rooms */}
       <div className="body">
-        <h1>AVAILABLE ROOMS: {count}</h1>
+        <h1>AVAILABLE ROOMS: {availableRooms.length}</h1>
         {availableRooms.map((r) => (
           <div className="per-detail">
               <Carousel
@@ -96,11 +91,11 @@ function MoreDetails(props) {
                   ))}
               </Carousel>
             <div>
-              <p>Room: {r.RoomNumber}</p>
               <p>Type: {r.RoomTypeName || "Unknown"}</p>
               <p>Floor: {r.Floor}</p>
               <p>Room: {r.RoomNumber}</p>
-              <p>Base Rate:{r.BaseRate}</p>
+              <p>Description:{r.Description}</p>
+              <p>From: ${r.BaseRate}</p>
               </div>
               <div>
               <Link

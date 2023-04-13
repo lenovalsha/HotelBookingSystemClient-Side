@@ -43,7 +43,7 @@ export default function Register(){
     return(<div>
         <Navbar/>
         <h1>Register</h1>
-        <section className="sub">
+        <form>
         <input type="text" value={fname} onChange={(e)=> setFname(e.target.value)} placeholder="First Name"/>
         <input type="text" value={lname} onChange={(e)=> setLname(e.target.value)} placeholder="Last Name"/>
         <input type="text" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Emal"/>
@@ -56,6 +56,6 @@ export default function Register(){
         <Link to="/glogin">
             <p>Already a member? Login</p>
         </Link>
-        </section>
+        </form>
     </div>)
 }

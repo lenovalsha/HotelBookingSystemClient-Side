@@ -45,7 +45,7 @@ function Reservation() {
   return (
     <>
 <Navbar/>
-    <form>
+    <div className="form">
       <h1>This is Reservation</h1>
       <label>Email</label>
       <input type="text" value={guest} readOnly />
@@ -67,7 +67,7 @@ function Reservation() {
             >
               <button className="cancel">Cancel</button>
             </Link>
-    </form>
+    </div>
     </>
   );
 }

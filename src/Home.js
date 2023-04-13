@@ -8,6 +8,7 @@ import { BASEPATH, COMPANY } from "./config";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Footer from "./Components/footer";
+import { mindShare } from "fontawesome";
 
 function Home() {
   const [arrivalDate, setArrivalDate] = useState(
@@ -18,6 +19,8 @@ function Home() {
   );
   const [availableHotels, setAvailableHotels] = useState([]);
   const [province, setProvince] = useState("");
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
 
   //the first time the page loads -> no queries
   useEffect(() => {
@@ -25,6 +28,12 @@ function Home() {
       const resp = await fetch(BASEPATH + `hotels`);
       const data = await resp.json();
       setAvailableHotels(data);
+      const prices = data.map(hotel => hotel.Price);
+      const min = Math.min(...prices)
+      const max = Math.min(...prices)
+      setMinPrice(min);
+      setMaxPrice(max);
+
     }
     fetchData();
   }, []);
@@ -64,26 +73,29 @@ function Home() {
       <div className="body">
       <Map />
       <div className="hotels">
-        {availableHotels.map((hotel) => (
-          <div key={hotel.Id}>
-            <img
-              src={`data:image/png;base64,${hotel.Image}`}
-              alt={hotel.Name}
-              onError={(e) => console.log("Failed to load image", e)}
-            />
-            <h1>{hotel.Name}</h1>
-            <p>City: {hotel.City}</p>
-            <p>Province: {hotel.Province}</p>
+  {availableHotels.map((hotel) => {
+    const minPrice = Math.min(...hotel.Rooms.map((room) => room.BaseRate));
 
+    return (
+      <div key={hotel.Id}>
+        <img
+          src={`data:image/png;base64,${hotel.Image}`}
+          alt={hotel.Name}
+          onError={(e) => console.log("Failed to load image", e)}
+        />
+        <h2>{hotel.Name}</h2>
+        <p>City: {hotel.City}</p>
+        <p>Province: {hotel.Province}</p>
+        <p>Description: {hotel.Description}</p>
+        <p>From: ${minPrice}</p>
 
-            <Link
-              to={`/moreDetails/${hotel.Id}/${arrivalDate}/${departureDate}`}
-            >
-              <button>More Details</button>
-            </Link>
-          </div>
-        ))}
+        <Link to={`/moreDetails/${hotel.Id}/${arrivalDate}/${departureDate}`}>
+          <button>More Details</button>
+        </Link>
       </div>
+    );
+  })}
+</div>
       <h2>About {COMPANY}</h2>
       <section className="about">
       <About
