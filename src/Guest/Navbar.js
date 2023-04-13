@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom'
+import { COMPANY } from '../config';
 function Navbar(){
     return(
         <div className='navbar'>
-        <h1>Company</h1>
+        <h1>{COMPANY}</h1>
         <nav>
             <ul>
                 <li><Link to="/home">Home</Link></li>

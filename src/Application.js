@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import { COMPANY } from "./config";
 
 
 function Application(){
     return(<div className="container">
-            <h1>Company</h1>
+            <h1>{COMPANY}</h1>
         <div className="sub">          
             <Link to="/stafflogin">
             <button>Staff</button>

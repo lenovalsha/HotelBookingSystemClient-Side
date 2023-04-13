@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASEPATH } from "../config";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Reservation() {
   const { roomId, hotelId, baseRate, arrival, departure } = useParams();
@@ -43,7 +43,9 @@ function Reservation() {
     result = await result.json();
   }
   return (
-    <div>
+    <>
+<Navbar/>
+    <form>
       <h1>This is Reservation</h1>
       <label>Email</label>
       <input type="text" value={guest} readOnly />
@@ -60,7 +62,13 @@ function Reservation() {
       <label>Number of Adults:</label>
       <input type="text" onChange={(e)=>setNumAdults(e.target.value)} value={numAdults}/>
       <button onClick={Reserve}>Make Reservation</button>
-    </div>
+      <Link
+              to={`/moreDetails/${hotelId}/${arrival}/${departure}`}
+            >
+              <button className="cancel">Cancel</button>
+            </Link>
+    </form>
+    </>
   );
 }
 export default Reservation;

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Calendars from "./Calendar";
+import Footer from "./footer";
 
 import Navbar from "../Guest/Navbar";
 //show rooms available
@@ -59,19 +60,18 @@ function MoreDetails(props) {
           setDate={setDepartureDate}
           label="Departure Date:"
         />
-        <button className="search" onClick={handleAvailabilityCheck}>Search</button>
+        <button onClick={handleAvailabilityCheck}>Search</button>
       </div>
-      <h1>{Id}</h1>
-      <div>
+      <div className="body">
         <h1>AVAILABLE ROOMS</h1>
         {availableRooms.map((r) => (
           <div className="per-detail">
-            <div>
               <Carousel
                 autoPlay={true}
                 infiniteLoop
                 showArrows={false}
                 showThumbs={false}
+               
               >
                 {imageList
                   .filter((i) => i.RoomNumber === r.RoomNumber)
@@ -82,16 +82,19 @@ function MoreDetails(props) {
                         key={img.Id}
                         src={`data:image/png;base64, ${img.Image}`}
                         alt={img.altText}
-                        style={{ height: "300px", objectFit: "contain" }}
+                        
                       />
                     </div>
                   ))}
               </Carousel>
+            <div>
               <p>Room: {r.RoomNumber}</p>
               <p>Type: {r.RoomTypeName || "Unknown"}</p>
               <p>Floor: {r.Floor}</p>
               <p>Room: {r.RoomNumber}</p>
               <p>Base Rate:{r.BaseRate}</p>
+              </div>
+              <div>
               <Link
                 to={`/reservations/${r.HotelId}/${r.RoomNumber}/${
                   r.BaseRate
@@ -103,6 +106,7 @@ function MoreDetails(props) {
           </div>
         ))}
           </div>
+          <Footer/>
     </>
   );
 }

@@ -1,5 +1,5 @@
 export const BASEPATH = "https://localhost:7285/api/";
-
+export const COMPANY = "HotelOnTheGo";
 
 export async function hashPassword(password) {
   const encoder = new TextEncoder();
