@@ -6,7 +6,7 @@ function Application(){
     return(<div className="container">
             <h1>{COMPANY}</h1>
         <div className="sub">          
-            <Link to="/stafflogin">
+            <Link to="/slogin">
             <button>Staff</button>
             </Link>
             <Link to="/adminlogin">

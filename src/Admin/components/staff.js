@@ -66,7 +66,7 @@ export function StaffLogin(){
   const navigate = useNavigate();
   async function LoginGuest() {
       const hashedPassword = await hashPassword(password); //hash it
-      fetch(BASEPATH + "staffs/" + username)
+      fetch(BASEPATH + "staffs/username/" + username)
         .then((res) => {
           return res.json();
         })
@@ -77,9 +77,11 @@ export function StaffLogin(){
           } else {
             //see if password matches
             if (resp.Password === hashedPassword) {
-              sessionStorage.setItem("staff", username);
+              let hotelId = resp.Id;
+              sessionStorage.setItem("hotelId", hotelId);
+              sessionStorage.setItem("admin", username);
               console.log("login successful")
-              navigate("/home");
+              navigate("/sdashboard");
             } else console.log(username + " has failed to logged in");
           }
         })

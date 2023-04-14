@@ -1,0 +1,40 @@
+nav.top{
+    position: absolute;
+    background-color:#323234 ;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+.staff{
+    height: 100vh;
+    display: flex;
+    position: relative;
+    top: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+nav.side{
+    width: 300px;
+    background-color: #062230;
+    height: 90vh;
+}
+nav.side ul{
+    display: flex;
+    flex-direction: column;
+
+}
+nav.side ul li{
+    border: 1px solid white;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container{
+    width: 75%;
+   margin: 0 auto;
+   border: 1px solid gray;
+  }

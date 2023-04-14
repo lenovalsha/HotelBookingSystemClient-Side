@@ -13,7 +13,7 @@ import Application from './Application';
 import StaffRegister,{ StaffLogin,StaffList } from './Admin/components/staff';
 import { ShowRooms } from './Admin/components/room';
 import MyReservation from './Guest/MyReservation';
-
+import StaffDashboard from './HotelStaff/Dashboard';
 function App() {
   return (
     <div className="App">
@@ -31,6 +31,8 @@ function App() {
           <Route path='/staffs' element={<StaffList/>}/>
           <Route path='/rooms' element={<ShowRooms/>}/>
           <Route path='/home' element={<Home/>}/>
+          <Route path='/sdashboard' element={<StaffDashboard/>}/>
+
           {/* GUEST */}
           <Route path='/glogin' element={<Glogin/>}/>
           <Route path='/gRegister' element={<GRegister/>}/>
