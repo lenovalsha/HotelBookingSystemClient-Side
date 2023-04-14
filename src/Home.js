@@ -33,7 +33,7 @@ function Home() {
       const max = Math.min(...prices)
       setMinPrice(min);
       setMaxPrice(max);
-
+      sessionStorage.removeItem("admin");
     }
     fetchData();
   }, []);

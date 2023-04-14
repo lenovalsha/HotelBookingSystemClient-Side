@@ -47,8 +47,8 @@ function Overview()
         fetchData();
       }, []);
       const arrivingCount = reservedRooms.filter(room => room.ReservationStatusId ===1).length;
-      const departingCount = reservedRooms.filter(room => room.ReservationStatus === 2).length;
-      const inHouseCount = reservedRooms.filter(room => room.ReservationStatus === 3).length;
+      const inHouseCount = reservedRooms.filter(room => room.ReservationStatusId === 2).length;
+      const departingCount = reservedRooms.filter(room => room.ReservationStatusId === 3).length;
    return(<div className="overview">
     <h1>Good morning {admin}, {HOTELID}</h1>
     <div className="flex">

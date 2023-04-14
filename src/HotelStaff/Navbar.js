@@ -6,11 +6,10 @@ export default function Navbar(){
          <nav className="side">
             <ul>
                 <li><Link to="/sdashboard">Dashboard</Link></li>
-                <li><Link to="/staffs">CheckIn</Link></li>
+                <li><Link to="/checkin">CheckIn</Link></li>
                 <li><Link to="/rooms">Rooms</Link></li>
-                <li><Link to="/rooms">Walk-In</Link></li>
+                <li><Link to="/walkin">Walk-In</Link></li>
                 <li><Link to="/rooms">Contact</Link></li>
-
             </ul>
         </nav>
 

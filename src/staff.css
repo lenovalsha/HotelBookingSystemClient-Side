@@ -38,3 +38,19 @@ nav.side ul li{
    margin: 0 auto;
    border: 1px solid gray;
   }
+.form{
+    display: flex;
+    width: 25%;
+    max-height: 90vh;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.form > input, .form>label{
+    font-size: 20px;
+    margin: 2px auto;
+    width: 100%;
+    
+}
+.form>.buttons{
+    display: flex;
+}

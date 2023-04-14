@@ -10,12 +10,21 @@ function Reservation() {
   const [departureDate, setDepartureDate] = useState(new Date());
   const [numChildren, setNumChildren] = useState(0);
   const [numAdults, setNumAdults] = useState(0);
-
+const [guestData,setGuestData] = useState({});
   const navigate = useNavigate();
   let guest = sessionStorage.getItem("guest");
+  //get the guest information
+  async function fetchGuestData() {
+    const resp = await fetch(BASEPATH + `guests/` + guest);
+    const data = await resp.json();
+    setGuestData(data); // set the guest data state to the fetched data object
+  }
   useEffect(() => {
     if (guest === null || guest === "") {
       navigate("/glogin");
+
+    }else{
+      fetchGuestData();
     }
   }, []);
   console.log(guest);
@@ -26,6 +35,12 @@ function Reservation() {
         method:"POST",
         body:JSON.stringify({
             guestEmail:guest,
+            email:guest,
+            firstName:guestData.FirstName,
+            lastName:guestData.LastName,
+            address: guestData.Address,
+            city: guestData.City,
+            phone: guestData.Phone,
             roomNumber:roomId,
             hotelId:hotelId,
             arrivalDate:arrival,
