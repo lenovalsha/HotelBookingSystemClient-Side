@@ -55,8 +55,10 @@ function Images(props) {
   }
   }
   return (
-    <div>
+    <div className="flex-column">
      <select onChange={(e) => setRoom(e.target.value)}>
+     <option value={""} key={0}></option>
+
         {
           //loop through the list and add it as option
           roomList.map((prio) => (

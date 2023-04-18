@@ -11,12 +11,8 @@ import Footer from "./Components/footer";
 import { mindShare } from "fontawesome";
 
 function Home() {
-  const [arrivalDate, setArrivalDate] = useState(
-    new Date().toISOString().split("T"[0])
-  );
-  const [departureDate, setDepartureDate] = useState(
-    new Date().toISOString().split("T"[0])
-  );
+  const [arrivalDate, setArrivalDate] = useState(new Date(new Date().getTime()).toISOString().slice(0, 10));
+  const [departureDate, setDepartureDate] = useState(new Date(new Date().getTime() + 86400000).toISOString().slice(0, 10));
   const [availableHotels, setAvailableHotels] = useState([]);
   const [province, setProvince] = useState("");
   const [minPrice, setMinPrice] = useState(null);

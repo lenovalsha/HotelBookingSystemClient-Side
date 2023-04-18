@@ -9,17 +9,11 @@ import WalkInReservation from "../HotelStaff/component/walkin";
 
 //show rooms available
 function AvailableRooms(props) {
-  //   const { Id,arrDate,depDate } = useParams();
   const [imageList, setImageList] = useState([]);
-  const [arrivalDate, setArrivalDate] = useState(
-    new Date().toISOString().split("T"[0])
-  );
-  const [departureDate, setDepartureDate] = useState(
-    new Date().toISOString().split("T"[0])
-  );
+  const [arrivalDate, setArrivalDate] = useState(new Date(new Date().getTime()).toISOString().slice(0, 10));
+  const [departureDate, setDepartureDate] = useState(new Date(new Date().getTime() + 86400000).toISOString().slice(0, 10));
   const [availableRooms, setAvailableRooms] = useState([]);
   const staff = sessionStorage.getItem("admin");
-  const [showForm,setShowForm] =useState(false);
   console.log(staff);
   useEffect(() => {
     async function fetchData() {
@@ -52,7 +46,7 @@ function AvailableRooms(props) {
     setAvailableRooms(data);
   };
   return (
-    <>
+    <div className="staff-overview">
       <div className="selectors">
         <Calendars
           date={arrivalDate}
@@ -92,10 +86,11 @@ function AvailableRooms(props) {
                   </div>
                 ))}
             </Carousel>
-            <div>
+            <div className="info">
               <p>Type: {r.RoomTypeName || "Unknown"}</p>
               <p>Floor: {r.Floor}</p>
               <p>Room: {r.RoomNumber}</p>
+              <p>Number of Beds: {r.NumOfBeds}</p>
               <p>Description:{r.Description}</p>
               <p>From: ${r.BaseRate}</p>
             </div>
@@ -118,8 +113,7 @@ function AvailableRooms(props) {
           </div>
         ))}
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 

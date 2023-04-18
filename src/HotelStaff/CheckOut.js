@@ -1,14 +1,14 @@
 import Navbar from "./Navbar";
 import TopBar from "./TopBar";
-import Overview from "../Admin/components/overview";
+import {Departing} from "./component/reservations";
 
-export default function StaffDashboard() {
+export default function CheckingOut() {
   return (
     <div className="container">
       <TopBar />
         <Navbar />
       <div className="staff">
-        <Overview/>
+        <Departing/>
       </div>
     </div>
   );

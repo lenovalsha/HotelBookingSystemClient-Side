@@ -62,40 +62,51 @@ export default function WalkInReservation(){
     <TopBar />
     <div className="staff">
       <Navbar />
-    <div className="form">
-    <label>First Name:</label>
-    <input type="text" value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
-    <label>Last Name:</label>
-    <input type="text" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
-    <label>Email:</label>
-    <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-    <label>Address:</label>
-    <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)}/>
-    <label>City:</label>
-    <input type="text" value={city} onChange={(e)=>setCity(e.target.value)}/>
-    <label>Postal:</label>
-    <input type="text" value={postal} onChange={(e)=>setPostal(e.target.value)}/>
-    <label>Phone:</label>
-    <input type="text" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
-    <label>Room Number:</label>
-    <input type="text" value={roomId}/>
+      
+<div className="walkin">
+  <div class="input-container">
+    <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+    <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+  </div>
+  <div class="input-container">
+  
+    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+
+    <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+  </div>
+  <div class="input-container">
+
+    <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
+  
+    <input type="text" placeholder="Postal" value={postal} onChange={(e) => setPostal(e.target.value)} />
+  </div>
+  <div class="input-container">
+
+    <input type="text" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+
+    <input type="text" value={roomId} />
+  </div>
+  <div class="input-container">
+    <input type="text"  placeholder="Number of Adults" value={numAdults} onChange={(e) => setNumAdults(e.target.value)} />
+    <input type="text" placeholder="Number of Children" value={numChildren} onChange={(e) => setNumChildren(e.target.value)} />
+  </div>
+  <div class="input-container">
     <label>Check-in Date:</label>
-    <input type="text" readOnly value={arrival}/>
+    <input type="text" readOnly value={arrival} />
     <label>Check Out Date:</label>
-    <input type="text" readOnly value={departure}/>
-    <label>Number of Adults:</label>
-    <input type="text"value={numAdults} onChange={(e)=>setNumAdults(e.target.value)}/>
-    <label>Number of Children:</label>
-    <input type="text" value={numChildren} onChange={(e)=>setNumChildren(e.target.value)}/>
-    <label>Base Rate:</label>
-    <input type="text"  value={baseRate} readOnly/>
+    <input type="text" readOnly value={departure} />
+  </div>
+  <div className="input-container">
+    <input type="text" placeholder="Base Rate"  value={baseRate} readOnly/>
     <select onChange={(e) => setReservationStatus(e.target.value)}>
+    <option value={""} key={0}>Status</option>
         {reservationstatusList.map((x)=>(
             <option value={x.Id} key={x.Id}>
             {x.Name}
             </option>
         ))}
     </select>
+  </div>
     <div className="buttons">
 
     <Link to="/walkin"><button>Cancel</button></Link>

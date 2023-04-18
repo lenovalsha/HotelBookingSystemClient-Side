@@ -19,6 +19,9 @@ code {
 footer{
   background-color: rgb(15, 15, 15);
   height: 200px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 footer .info{
   height: 200px;
@@ -43,11 +46,48 @@ footer section{
 }
 .body{
   position: relative;
-  margin-top: 200px;
   width: 50%;
   margin: 0 auto;
 }
+.overflow{
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+  height: 80vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+.adminstaff {
+  display: flex;
+  height:200px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+}
+.hotelId{
+  position: relative;
+  top: 0;
+  width: auto;
+  text-align: left;
+  padding: 20px;
+}
+.registerstaff{
+  position: absolute;
+  background-color: yellow;
+  right: 0;
+}
+.adminstaff > h3{
+  padding-left: 10px;
+}
+.adminstaff >h3 span{
 
+  color: green;
+}
+.delete{
+  background-color: red;
+}
 .sub{
   width:30%;
   margin: 0 auto;
@@ -57,7 +97,20 @@ footer section{
 .sub p{
   width: 50%;
 }
-
+.case{
+  display: flex;
+  width: 50%;
+  height: 75vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  align-items: center;
+  background-image:
+  linear-gradient(to bottom right, #00292d 50%, transparent 0%),
+  linear-gradient(to top left, #00212d 50%, transparent 90%);
+background-position: top left;
+background-repeat: no-repeat;}
 .flex{
   display: flex;
   justify-content: space-evenly;
@@ -71,27 +124,57 @@ footer section{
   border: 1px solid gray;
 
 }
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+ 
+}
+.flex-column >h2{
+  font-size: 50px;
+  padding: 50px;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.flex-column-p{
+  color: white;
+}
+.flex-column > input{
+
+  padding-left: 20px;
+  opacity: .7;
+}
+.flex-column > input, .flex-column > button, .flex-column>select{
+  width: 30%;
+  margin: 10px auto;
+  font-size: 30px;
+  border-radius: 25px;
+  color: #00212d;
+  font-weight: 500;
+}
 .overview{
   width: 100%;
 }
 label {
   margin-bottom: 0.5rem;
 }
-
-
 /* Navbar */
 .top-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 200px;
-  background-color: #141416;
+  background-color: #00212d;
   text-align: center;
   border-radius: 10px;
   margin: 0 auto;
   position: relative;
   color: white;
-  filter: drop-shadow(10px 10px 5px #000);
+  filter: drop-shadow(10px 10px 5px #00212d);
 
 
 }
@@ -132,7 +215,7 @@ a:hover {
 }
 .navbar{
   position: fixed;
-  background-color: #0071c2;
+  background-color: #00212d;
   width: 100%;
   top:0;
   z-index: 1;
@@ -183,7 +266,7 @@ a:hover {
   cursor: pointer;
 }
 .search .fa-solid{
-  color: #0071c2;
+  color: #00212d;
 }
 .hotels{
   display: flex;
@@ -222,7 +305,7 @@ section.about > div{
 }
 .main-image {
   position: relative;
-  background-image: linear-gradient(to right, black,white,black);
+  background-image: linear-gradient(to right, #00212d,#00212d);
 }
 .vignette{
   width: 50%;
@@ -261,21 +344,52 @@ section.about > div{
   text-align:center ;
   align-items: center;
   border: 1px solid gray;
-  background-color: red;
+  text-align: start;
+  padding: 10px;
+}
+.per-detail > .info{
+  margin: 100px;
+  
 }
 .per-detail .carousel{
-  max-width: 200px;
-  object-fit: contain;
+  width: 100%;
+  max-width: 900px;
+  max-height:200px;
+  object-fit: cover;
   display: flex;
   justify-content: center;
 }
-.per-detail img{
+.per-detail > img{
   object-fit: contain;
   display: flex;
   justify-content: center;
   max-height: 300px;
 }
-
+/* All Rooms */
+.rooms{
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  width: 100%;
+  height:300px;
+  text-align:center ;
+  align-items: center;
+  border: 1px solid gray;
+}
+.rooms .carousel{
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+}
+.rooms > img{
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  max-height: 300px;
+}
 /* Reservation */
 form{
   display: flex;
@@ -297,4 +411,16 @@ form>Link, button.cancel{
   margin: 2px auto;
   font-size: 20px;
   border-radius: 20px;
+}
+/* My reservations Page */
+.reservations{
+  display: flex;
+  width: 70%;
+  margin: 10px auto;
+  height: 200px;
+  align-items: center;
+  justify-content: space-between;
+}
+.reservations > p{
+  display: flex;
 }

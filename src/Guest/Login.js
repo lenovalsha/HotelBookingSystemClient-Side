@@ -32,14 +32,16 @@ function Login(){
         }
     return(<div>
         <Navbar/>
-        <div className="form">
-        <h1>Login</h1>
+        <div className="case">
+        <div className="flex-column">
+        <h2>Login</h2>
         <input type="text" onChange={(e)=> setEmail(e.target.value)} value={email} placeholder="Email"/>
         <input type="password" onChange={(e)=> setPassword(e.target.value)} value={password} placeholder="Password"/>
         <button onClick={LoginGuest}>Login</button>
         <Link to="/gregister">
-            <p>Not a member? Register</p>
+            <p className="flex-column-p">Not a member? Register</p>
         </Link>
+        </div>
         </div>
     </div>)
 }

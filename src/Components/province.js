@@ -19,7 +19,9 @@ export default function Provinces(props) {
   ];
   return(<div className="province-selector">
     <label>Select a province:</label>
+
       <select onChange={(e)=>props.setProv(e.target.value)}>
+    <option value={""} key={0}></option>
     {
         provinces.map((e)=>(
             <option value={e.prov} key={e.id}>

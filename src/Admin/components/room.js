@@ -13,6 +13,8 @@ export default function AddRoom({onClose}) {
   const [roomStatusId, setRoomStatusId] = useState();
   const [roomTypeName, setRoomTypeName] = useState();
   const [baseRate, setBaseRate] = useState();
+  const [numOfBeds, setNumOfBeds] = useState();
+
   //lists
   const [roomStatusList, setRoomStatusList] = useState([]);
   const [roomTypeList, setRoomTypeList] = useState([]);
@@ -59,6 +61,7 @@ export default function AddRoom({onClose}) {
         roomStatusId: roomStatusId,
         roomTypeName: roomTypeName,
         baseRate: baseRate,
+        numOfBeds:numOfBeds
       }),
       headers: {
         "Content-Type": "application/json",
@@ -69,35 +72,47 @@ export default function AddRoom({onClose}) {
     sessionStorage.setItem("roomId",result.Id);
   }
   return (
-    <div>
+    <div className="flex-column">
       <label>Hotel Id</label>
       <input value={hotelId} type="text" />
       <label>Floor Number</label>
       <input
         value={floor}
         onChange={(e) => setFloor(e.target.value)}
-        type="text"
+        type="number"
+        required
       />
       <label>Room Number</label>
       <input
         value={roomNumber}
         onChange={(e) => setRoomNumber(e.target.value)}
-        type="text"
+        type="number"
+        required
+      />
+      <label>Number of beds</label>
+      <input
+        value={numOfBeds}
+        onChange={(e) => setNumOfBeds(e.target.value)}
+        type="number"
+        required
       />
       <label>Description</label>
       <input
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         type="text"
+        required
       />
       <label>Base Rate</label>
       <input
         value={baseRate}
         onChange={(e) => setBaseRate(e.target.value)}
-        type="text"
+        type="number"
+        required
       />
 
       <select onChange={(e) => setRoomStatusId(e.target.value)}>
+          <option value={""} key={0}></option>
         {
           //loop through the list and add it as option
           roomStatusList.map((prio) => (
@@ -108,6 +123,8 @@ export default function AddRoom({onClose}) {
         }
       </select>
       <select onChange={(e) => setRoomTypeName(e.target.value)}>
+     <option value={""} key={0}></option>
+
         {
           //loop through the list and add it as option
           roomTypeList.map((prio) => (
@@ -118,7 +135,7 @@ export default function AddRoom({onClose}) {
         }
       </select>
       <button onClick={AddRoom}>Register Room</button>
-      <button className="close" onClick={onClose}>X</button>
+      <button className="delete" onClick={onClose}>X</button>
       <Images roomId = {sessionStorage.getItem("roomId")}/>
     </div>
   );
@@ -129,8 +146,6 @@ export function ShowRooms() {
   const [roomList, setRoomList] = useState([]);
   const [imageList, setImageList] = useState([]);
   const [showRoom, setShowRoom] = useState(false);
-
-
   useEffect(() => {
     async function fetchData() {
       const resp = await fetch(
@@ -151,8 +166,7 @@ export function ShowRooms() {
     fetchImages();
   }, [Id]);
   return (
-    <div> 
-    <Navbar/>
+    <div className="overflow">
     <h1>All Rooms</h1>
     <button
             onClick={() =>
@@ -166,13 +180,14 @@ export function ShowRooms() {
         <AddRoom onClose={()=>{setShowRoom(false)}}/>
       )}
     {roomList.map((r) => (
-      <div className="per-detail">
+      <div className="rooms">
         <h2>Type:{r.RoomTypeName || "Unknown"}</h2>
         <p>Floor: {r.Floor}</p>
         <p>Room: {r.RoomNumber}</p>
         <p>Base Rate:{r.BaseRate}</p>
         <div className="images">
-          <Carousel infiniteLoop  className="carousel-wrapper">
+          <Carousel infiniteLoop  className="carousel-wrapper" showArrows={false}
+              showThumbs={false}>
             {imageList
               .filter((i) => i.RoomNumber === r.RoomNumber)
               .map((img) => (
@@ -190,7 +205,6 @@ export function ShowRooms() {
         </div>
       </div>
     ))}
-
   </div>
 );
-}
+              }

@@ -3,10 +3,9 @@ import Overview from "./components/overview";
 function Dashboard()
 {
 
-   return(<div className="">
+   return(<div className="body">
     <Navbar/>
     <Overview/>
-    
    </div>)
     
 }

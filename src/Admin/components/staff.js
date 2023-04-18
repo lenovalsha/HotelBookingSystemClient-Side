@@ -64,7 +64,7 @@ export function StaffLogin(){
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const navigate = useNavigate();
-  async function LoginGuest() {
+  async function LoginStaff() {
       const hashedPassword = await hashPassword(password); //hash it
       fetch(BASEPATH + "staffs/username/" + username)
         .then((res) => {
@@ -77,7 +77,7 @@ export function StaffLogin(){
           } else {
             //see if password matches
             if (resp.Password === hashedPassword) {
-              let hotelId = resp.Id;
+              let hotelId = resp.HotelId;
               sessionStorage.setItem("hotelId", hotelId);
               sessionStorage.setItem("admin", username);
               console.log("login successful")
@@ -89,19 +89,19 @@ export function StaffLogin(){
           console.log("Login failed " + err.message);
         });
       }
-  return(<div className="container">
-  <h1>Login Staff</h1>
-  <section className="sub container">
+  return(<div className="case">
+  <div className="flex-column">
+  <h2>Login Staff</h2>
       <input type="text" onChange={(e)=> setUsername(e.target.value)} value={username} placeholder="Username"/>
       <input type="password" onChange={(e)=> setPassword(e.target.value)} value={password} placeholder="Password"/>
-      <button onClick={LoginGuest}>Login</button>
-  </section>
+      <button onClick={LoginStaff}>Login</button>
+  </div>
   </div>)
 }
 export function StaffList(){
   const [staffList,setStaffList] = useState([]);
   const HOTELID = sessionStorage.getItem("hotelId");
-
+  
   //get list
   useEffect(() => {
     //get the status list data
@@ -113,20 +113,31 @@ export function StaffList(){
     };
     fetchData();
   }, []);
-
-  return(<div>
+async function DeleteStaff(id)
+{
+  const response = await fetch(BASEPATH +`Staffs/${(id)}`, {
+    method: 'DELETE'
+  });
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Failed to delete staff member: ${error}`);
+  }
+  window.location.reload()
+}
+  return(<div className="body">
   <Navbar/>
-    <h1>HotelId: {HOTELID}</h1>
-  <section>
-    {staffList.map((s)=>{
-      <div className="staff">
-      <h1>{s.Firstname}</h1>
-      <h1>{s.Lastname}</h1>
-      </div>
-    })}
-  </section>
+    <h1 className="hotelId">Hotel Id: {HOTELID}</h1>
   <Link to="/sregister">
-  <button>Register a staff</button>
+  <button className="registerstaff">Register a staff</button>
   </Link>
+    {staffList?.length> 0 && staffList.map((s)=>(
+      <div className="adminstaff">
+      <h3>First Name: <span>{s.FirstName}</span></h3>
+      <h3>Last Name: <span>{s.LastName}</span></h3>
+      <h3>Email: <span>{s.Email}</span></h3>
+      <h3>Phone Number: <span>{s.Phone}</span></h3>
+      <button className="delete" onClick={()=> DeleteStaff(s.Id)}>Remove Staff</button>
+      </div>
+    ))}
   </div>)
 }

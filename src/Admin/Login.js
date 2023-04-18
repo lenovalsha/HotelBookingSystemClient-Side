@@ -6,6 +6,7 @@ import { hashPassword } from "../config";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLogging,setIsLogging] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     sessionStorage.clear(); //clear our storage so we cant access the form after logging out
@@ -70,10 +71,9 @@ function Login() {
   //#endregion
 
   return (
-    <div className="container">
+    <div className="case">
+    <div className="flex-column">
       <h2>Register/Login</h2>
-      <section className="sub container">
-
       <input
         type="text"
         value={username}
@@ -88,10 +88,18 @@ function Login() {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
+      {isLogging? (
+       <button onClick={login}>Login</button>
+      ):
+      (
       <button onClick={Register}>Register</button>
-      <button onClick={login}>Login</button>
-      </section>
+      )}
+       <button onClick={() => setIsLogging(!isLogging)}>
+      {isLogging ? "Sign up!" : "Already a member"}
+    </button>
+     
       
+    </div>
     </div>
   );
 }

@@ -11,12 +11,14 @@ import  GRegister  from './Guest/Register';
 import Settings from './Components/Settings';
 import Application from './Application';
 import StaffRegister,{ StaffLogin,StaffList } from './Admin/components/staff';
-import { ShowRooms } from './Admin/components/room';
+import AdminRooms from './Admin/Rooms';
 import MyReservation from './Guest/MyReservation';
 import StaffDashboard from './HotelStaff/Dashboard';
 import CheckIn from './HotelStaff/Checkin';
+import CheckingOut from './HotelStaff/CheckOut';
 import WalkIn from './HotelStaff/WalkIn';
 import WalkInReservation from './HotelStaff/component/walkin';
+import Rooms from './HotelStaff/Rooms';
 function App() {
   return (
     <div className="App">
@@ -28,15 +30,19 @@ function App() {
           <Route path='/adminlogin' element={<Login/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/hotel' element={<Hotel/>}/>
+          <Route path='/adminrooms' element={<AdminRooms/>}/>
           {/* STAFF */}
           <Route path='/slogin' element={<StaffLogin/>}/>
           <Route path='/sregister' element={<StaffRegister/>}/>
           <Route path='/staffs' element={<StaffList/>}/>
-          <Route path='/rooms' element={<ShowRooms/>}/>
           <Route path='/home' element={<Home/>}/>
           <Route path='/sdashboard' element={<StaffDashboard/>}/>
           <Route path='/checkin' element={<CheckIn/>}/>
+          <Route path='/checkout' element={<CheckingOut/>}/>
+
           <Route path='/walkin' element={<WalkIn/>}/>
+          <Route path='/showrooms' element={<Rooms/>}/>
+
           <Route path='/walkinreservation/:hotelId/:roomId/:baseRate/:arrival/:departure'element={<WalkInReservation/>}/>
 
 

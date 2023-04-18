@@ -2,11 +2,13 @@ import { useEffect,useState } from "react";
 import { BASEPATH } from "../../config";
 function Overview()
 {
-    const arrDate = new Date().toISOString().split("T"[0]);
-    const depDate = new Date().toISOString().split("T"[0]);
+    const arrDate= (new Date(new Date().getTime()).toISOString().slice(0, 10));
+    const depDate =(new Date(new Date().getTime() + 86400000).toISOString().slice(0, 10));
+    console.log(arrDate);
+    console.log(depDate);
     const [roomCount,setRoomCount] = useState([]);
     const [availableRooms,setAvailableRooms] = useState([]);
-    const [reservedRooms,setReservedRooms] = useState([]);
+    const [reservations,setReservations] = useState([]);
     let admin = sessionStorage.getItem("admin")
     //get the hotelId for this admin
     let HOTELID = sessionStorage.getItem("hotelId");
@@ -42,13 +44,14 @@ function Overview()
               `reservations/hotelId/${HOTELID}/date/${arrDate}`
           );
           const data = await resp.json();
-          setReservedRooms(data);
+          setReservations(data);
         }
         fetchData();
       }, []);
-      const arrivingCount = reservedRooms.filter(room => room.ReservationStatusId ===1).length;
-      const inHouseCount = reservedRooms.filter(room => room.ReservationStatusId === 2).length;
-      const departingCount = reservedRooms.filter(room => room.ReservationStatusId === 3).length;
+      const arrivingCount = reservations.filter(room => room.ArrivalDate === arrDate+"T00:00:00" && room.ReservationStatusId!==1).length;
+      console.log()
+      const inHouseCount = reservations.filter(room => room.ReservationStatusId === 1).length;
+      const departingCount = reservations.filter(room => room.DepartureDate === arrDate+"T00:00:00").length;
    return(<div className="overview">
     <h1>Good morning {admin}, {HOTELID}</h1>
     <div className="flex">

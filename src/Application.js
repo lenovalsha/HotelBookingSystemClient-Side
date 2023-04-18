@@ -3,9 +3,10 @@ import { COMPANY } from "./config";
 
 
 function Application(){
-    return(<div className="container">
-            <h1>{COMPANY}</h1>
-        <div className="sub">          
+    return(
+        <div className="case">
+    <div className="flex-column">
+            <h2>{COMPANY}</h2>
             <Link to="/slogin">
             <button>Staff</button>
             </Link>

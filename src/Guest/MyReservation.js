@@ -22,17 +22,18 @@ export default function MyReservation() {
   return (
     <div>
       <Navbar />
-      <h1>This is reservation</h1>
-      <h1>{email}</h1>
-      {()=>{if(myreservation.count > 0)
-      {
+      <h1>My Reservations</h1>
+      {myreservation?.length > 0 && (
       myreservation.map((e) => (
-        <div>
-          <h1>{e.RoomNumber}</h1>
+        <div className="reservations">
+          <h1>{e.Hotel.Name}</h1>
+          <p>Room Number: {e.RoomNumber}</p>
+          <p>Arrival Date: {e.ArrivalDate}</p>
+          <p>Departure Date: {e.DepartureDate}</p>
+          <p>Rate:${e.Rate}</p>
         </div>
       ))
-      }
-      }}
+    )}
     </div>
   );
 }

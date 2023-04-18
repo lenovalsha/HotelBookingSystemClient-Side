@@ -10,7 +10,6 @@ function MoreDetails() {
   const { Id,arrDate,depDate } = useParams();
   let guest= sessionStorage.getItem("guest");
   console.log(guest)
-  
   return (
     <>
       <Navbar />

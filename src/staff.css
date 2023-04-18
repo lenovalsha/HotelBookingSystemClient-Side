@@ -7,18 +7,54 @@ nav.top{
     height: 100px;
 }
 .staff{
-    height: 100vh;
     display: flex;
     position: relative;
-    top: 100px;
     width: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
 }
+/* dashboard -> overview */
+.staff .overview{
+    position: relative;
+    top: 100px;
+}
+.staff .flex section{
+    height: 200px;
 
+}
+/* staff reservation checkin */
+.staff .staff-reservation{
+    position: relative;
+    top: 100px;
+
+}
+/* all rooms */
+.staff .body{
+    position: relative;
+    top: 100px;
+    width: 90%;
+}
+/* available rooms */
+.staff .staff-overview .selectors{
+    width: 100%;
+    display: flex;
+   align-items: center;
+}
+.staff .staff-overview .search{
+    position: relative;
+    height: 25px;
+    top: 0;
+    cursor: pointer;
+  }
+  .staff .staff-overview .body{
+    width: 90%;
+   align-items: center;
+}
 nav.side{
     width: 300px;
     background-color: #062230;
-    height: 90vh;
+    height:fit-content;
+    position: relative;
+    top: 100px;
 }
 nav.side ul{
     display: flex;
@@ -27,17 +63,22 @@ nav.side ul{
 }
 nav.side ul li{
     border: 1px solid white;
-    height: 100px;
+    height: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 .container{
+    
     width: 75%;
    margin: 0 auto;
    border: 1px solid gray;
+   display: flex;
+   height: 80vh;
+   
   }
+
 .form{
     display: flex;
     width: 25%;
@@ -49,8 +90,31 @@ nav.side ul li{
     font-size: 20px;
     margin: 2px auto;
     width: 100%;
-    
 }
 .form>.buttons{
     display: flex;
+}
+.walkin  .input-container > label,
+.walkin .input-container > input,
+.walkin .input-container > select,
+.walkin .input-container > button {
+  flex: 49%;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+}
+.walkin{
+    position: relative;
+    margin-top: 200px;
+}
+.walkin .input-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 50%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: yellow;
 }
