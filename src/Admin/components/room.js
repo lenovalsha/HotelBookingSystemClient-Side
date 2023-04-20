@@ -70,11 +70,11 @@ export default function AddRoom({onClose}) {
     });
     result = await result.json();
     sessionStorage.setItem("roomId",result.Id);
+    window.location.reload();
   }
   return (
     <div className="flex-column">
-      <label>Hotel Id</label>
-      <input value={hotelId} type="text" />
+      
       <label>Floor Number</label>
       <input
         value={floor}
@@ -146,6 +146,7 @@ export function ShowRooms() {
   const [roomList, setRoomList] = useState([]);
   const [imageList, setImageList] = useState([]);
   const [showRoom, setShowRoom] = useState(false);
+  let IsAdmin = Boolean(sessionStorage.getItem("IsAdmin"));
   useEffect(() => {
     async function fetchData() {
       const resp = await fetch(
@@ -165,20 +166,35 @@ export function ShowRooms() {
     }
     fetchImages();
   }, [Id]);
+  async function DeleteRoom(roomId)
+{
+  const response = await fetch(BASEPATH +`rooms/${HOTELID}/${roomId}`, {
+    method: 'DELETE'
+  });
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Failed to delete staff member: ${error}`);
+  }
+  window.location.reload()
+}
   return (
     <div className="overflow">
     <h1>All Rooms</h1>
+    {IsAdmin ?
+  <div>
     <button
-            onClick={() =>
-              {setShowRoom(true)}
-            }
-            disabled={false}
-          >
-            Add A Room
-          </button>
-          {showRoom && (
-        <AddRoom onClose={()=>{setShowRoom(false)}}/>
-      )}
+      onClick={() => {setShowRoom(true)}}
+      disabled={false}
+    >
+      Add A Room
+    </button>
+    {showRoom && (
+      <AddRoom onClose={()=>{setShowRoom(false)}}/>
+    )}
+  </div>
+  : null
+}
+
     {roomList.map((r) => (
       <div className="rooms">
         <h2>Type:{r.RoomTypeName || "Unknown"}</h2>
@@ -203,8 +219,11 @@ export function ShowRooms() {
               ))}
           </Carousel>
         </div>
+        {IsAdmin?<div>
+        <button className="delete" onClick={()=> DeleteRoom(r.RoomNumber)}>Delete Room</button>
+        </div>:null}
       </div>
     ))}
   </div>
 );
-              }
+}

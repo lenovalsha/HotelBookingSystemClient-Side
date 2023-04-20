@@ -3,6 +3,7 @@ import { BASEPATH } from "../../config";
 import { hashPassword } from "../../config";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 export default function StaffRegister()
 {
     const [fname,setFName] = useState("");
@@ -42,7 +43,7 @@ export default function StaffRegister()
         result = await result.json();
         alert("ADDED")
     }
-    return(<div className="">
+    return(<div className="body">
     <Navbar/>
         <h1>Register A Staff</h1>
         <section className="sub">
@@ -80,6 +81,7 @@ export function StaffLogin(){
               let hotelId = resp.HotelId;
               sessionStorage.setItem("hotelId", hotelId);
               sessionStorage.setItem("admin", username);
+              sessionStorage.setItem("IsAdmin",false);
               console.log("login successful")
               navigate("/sdashboard");
             } else console.log(username + " has failed to logged in");

@@ -6,7 +6,7 @@ import { hashPassword } from "../config";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogging,setIsLogging] = useState(false);
+  const [isLogging,setIsLogging] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     sessionStorage.clear(); //clear our storage so we cant access the form after logging out
@@ -26,6 +26,7 @@ function Login() {
           //see if password matches
           if (resp.Password === hashedPassword) {
             sessionStorage.setItem("admin", username);
+            sessionStorage.setItem("IsAdmin",true);
 
             //see if the user has a hotel associated with them
             fetch(BASEPATH + "hotels/adminusername/" + username)
@@ -67,6 +68,8 @@ function Login() {
       },
     });
     result = await result.json();
+    login();
+
   }
   //#endregion
 

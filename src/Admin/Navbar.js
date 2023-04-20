@@ -9,6 +9,8 @@ function Navbar(){
                 <li><Link to="/dashboard">Dashboard</Link></li>
                 <li><Link to="/staffs">Staff</Link></li>
                 <li><Link to="/adminrooms">Rooms</Link></li>
+                <li><Link to="/applications">Logout</Link></li>
+
             </ul>
         </nav>
         </div>

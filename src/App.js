@@ -16,6 +16,7 @@ import MyReservation from './Guest/MyReservation';
 import StaffDashboard from './HotelStaff/Dashboard';
 import CheckIn from './HotelStaff/Checkin';
 import CheckingOut from './HotelStaff/CheckOut';
+import InHouse from './HotelStaff/In-House';
 import WalkIn from './HotelStaff/WalkIn';
 import WalkInReservation from './HotelStaff/component/walkin';
 import Rooms from './HotelStaff/Rooms';
@@ -39,6 +40,7 @@ function App() {
           <Route path='/sdashboard' element={<StaffDashboard/>}/>
           <Route path='/checkin' element={<CheckIn/>}/>
           <Route path='/checkout' element={<CheckingOut/>}/>
+          <Route path='/inhouse' element={<InHouse/>}/>
 
           <Route path='/walkin' element={<WalkIn/>}/>
           <Route path='/showrooms' element={<Rooms/>}/>

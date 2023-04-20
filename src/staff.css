@@ -6,11 +6,13 @@ nav.top{
     align-items: center;
     height: 100px;
 }
+
 .staff{
     display: flex;
     position: relative;
     width: 100%;
     overflow-y: scroll;
+    height: 90vh;
 }
 /* dashboard -> overview */
 .staff .overview{
@@ -19,13 +21,14 @@ nav.top{
 }
 .staff .flex section{
     height: 200px;
-
+    
 }
 /* staff reservation checkin */
 .staff .staff-reservation{
     position: relative;
     top: 100px;
-
+    width: 100%;
+    text-align: center;
 }
 /* all rooms */
 .staff .body{
@@ -33,7 +36,10 @@ nav.top{
     top: 100px;
     width: 90%;
 }
-/* available rooms */
+.staff .overflow{
+    height: 90vh;
+}
+    /* available rooms */
 .staff .staff-overview .selectors{
     width: 100%;
     display: flex;
@@ -73,9 +79,8 @@ nav.side ul li{
     
     width: 75%;
    margin: 0 auto;
-   border: 1px solid gray;
    display: flex;
-   height: 80vh;
+   height: 100vh;
    
   }
 
@@ -116,5 +121,12 @@ nav.side ul li{
   flex-basis: 50%;
   justify-content: space-between;
   margin-bottom: 10px;
-  background-color: yellow;
+}
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.row > h3{
+    padding: 20px;
 }

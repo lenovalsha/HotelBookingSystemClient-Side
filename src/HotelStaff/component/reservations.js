@@ -31,11 +31,14 @@ export default function Arriving(){
     <div className="staff-reservation">
     <div>
       <h1>Arriving</h1>
-        {reservedRooms.filter(room => room.ArrivalDate === arrDate+"T00:00:00" && room.ReservationStatusId!==1).map((e)=>(
+        {reservedRooms.filter(room => room.ArrivalDate === arrDate+"T00:00:00" && room.ReservationStatusId!==1 &&room.ReservationStatusId!==2).map((e)=>(
             <div className="row" key={e.Id}>
-                <label>Room Number: {e.RoomNumber} </label>
-                <label>First Name: {e.Guest.FirstName}</label>
-                <label>Last Name: {e.Guest.LastName}</label>
+                <h3>Room Number: <span>{e.RoomNumber}</span> </h3>
+                <h3>First Name: <span>{e.FirstName}</span> </h3>
+                <h3>Last Name: <span>{e.LastName}</span></h3>
+                
+
+
                 <button
             onClick={() =>
               CheckIn(e)
@@ -93,7 +96,59 @@ export function Departing(){
               CheckIn(e)
             }
           >
-            Check-In
+           CheckOut
+          </button>
+            </div>
+           
+        ))}
+        {showForm && (
+        <CheckingOut onClose={()=>{setShowForm(false)}}/>
+      )}
+      </div>
+
+    </div>
+    </>)
+}
+export function InHouseList(){
+  const today= (new Date(new Date().getTime()).toISOString().slice(0, 10));
+
+    const [reservedRooms,setReservedRooms] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+
+    let HOTELID = sessionStorage.getItem("hotelId");
+
+    //get a list of all reservations coming today
+    useEffect(() => {
+        async function fetchData() {
+          const resp = await fetch(
+            BASEPATH +
+              `reservations/hotelId/${HOTELID}/date/${today}`
+          );
+          const data = await resp.json();
+          setReservedRooms(data);
+        }
+        fetchData();
+      }, []);
+     function CheckIn(props)
+      {
+        sessionStorage.setItem("reservationId", props.Id);
+        setShowForm(true)
+      }
+    return(<>
+    <div className="staff-reservation">
+    <div>
+      <h1>In House</h1>
+        {reservedRooms.filter(room =>room.ReservationStatusId===1).map((e)=>(
+            <div className="row" key={e.Id}>
+                <label>Room Number: {e.RoomNumber} </label>
+                <label>First Name: {e.Guest.FirstName}</label>
+                <label>Last Name: {e.Guest.LastName}</label>
+                <button
+            onClick={() =>
+              CheckIn(e)
+            }
+          >
+            CheckOut
           </button>
             </div>
            

@@ -51,7 +51,7 @@ function Images(props) {
     })
     const data = await result.json();
     console.log(data);
-    
+    alert("Image added!");
   }
   }
   return (

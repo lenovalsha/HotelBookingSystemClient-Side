@@ -61,29 +61,30 @@ function Hotel(){
             }
             const data = await result.json();
             console.log(data);
-
-            navigate("/panel");
+            // sessionStorage.setItem("hotelId",)
+            navigate("/applications");
           } catch (error) {
             console.error("Error:", error);
           }
         };
       }
-    return(<form>
-        <label>Name</label> 
-        <input value={name} onChange={(e) => setName(e.target.value) } type="text"/>
-        <label>Email</label> 
-        <input value={email} onChange={(e) => setEmail(e.target.value) } type="text"/>
-        <label>Address</label> 
-        <input value={address} onChange={(e) => setAddress(e.target.value) } type="text"/>
-        <label>City</label> 
-        <input value={city} onChange={(e) => setCity(e.target.value) } type="text"/>
-        <label>Postal</label> 
-        <input value={postal} onChange={(e) => setPostal(e.target.value) } type="text"/>
+    return(
+    <div className="case">
+
+    <div className="flex-column">
+        <h2>Register your hotel with us!</h2>
+        <input value={name} placeholder="Hotel Name" onChange={(e) => setName(e.target.value) } type="text"/>
+        <input value={email} placeholder="Hotel Email" onChange={(e) => setEmail(e.target.value) } type="text"/>
+        <input value={address} placeholder="Hotel Address" onChange={(e) => setAddress(e.target.value) } type="text"/>
+        <input value={city} placeholder="City" onChange={(e) => setCity(e.target.value) } type="text"/>
+        <input value={postal} placeholder="Postal" onChange={(e) => setPostal(e.target.value) } type="text"/>
+        <input value={phone} placeholder="Hotel Phone" onChange={(e) => setPhone(e.target.value) } type="text"/>
+        <div className="province">
         <Provinces setProv={setProvince}/>
-        <label>Phone</label> 
-        <input value={phone} onChange={(e) => setPhone(e.target.value) } type="text"/>
+        </div>
         <input className="file" type="file"  onChange={onImageChange} accept="image/*"/>
         <button onClick={RegisterHotel}>Register Hotel</button>
-    </form>)
+    </div>
+    </div>)
 }
 export default Hotel;

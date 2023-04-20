@@ -17,13 +17,14 @@ function Set(props)
         },
     })
     result =  await result.json();
+    alert("Added Successfully!")
+    setName("");
 }
 
-    return(<div>
-            <h2>Add {props.title}</h2>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+    return(<>
+            <input type="text" placeholder={props.title} value={name} onChange={(e) => setName(e.target.value)}/>
             <button onClick={Add}>Add</button>
-        </div>)
+        </>)
 }
 
 export default Set;

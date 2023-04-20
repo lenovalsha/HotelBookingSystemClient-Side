@@ -54,6 +54,8 @@ function Reservation() {
       },
     });
     result = await result.json();
+    alert("Thank you for your reservation");
+    navigate('/myreservations');
   }
   return (
     <>

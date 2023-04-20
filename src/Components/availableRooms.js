@@ -59,7 +59,7 @@ function AvailableRooms(props) {
           label="Departure Date:"
         />
         <button className="search" onClick={handleAvailabilityCheck}>
-          Search
+        <i class="fa-solid fa-magnifying-glass"/>
         </button>
       </div>
       {/* show all available rooms */}

@@ -99,7 +99,7 @@ export default function WalkInReservation(){
   <div className="input-container">
     <input type="text" placeholder="Base Rate"  value={baseRate} readOnly/>
     <select onChange={(e) => setReservationStatus(e.target.value)}>
-    <option value={""} key={0}>Status</option>
+    <option value={null} key={0}>Status</option>
         {reservationstatusList.map((x)=>(
             <option value={x.Id} key={x.Id}>
             {x.Name}

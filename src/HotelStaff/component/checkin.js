@@ -35,24 +35,24 @@ export default function CheckingIn({onClose}){
         try {
             const newData = await resp.json();
             setReservation(newData);
-            navigate("/sdashboard")
             console.log(newData);
-          } catch (error) {
+        } catch (error) {
             console.error(error);
-          }
+        }
+        navigate("/sdashboard")
     }
 
-    return(<div>
+    return(<div className="form">
     <button className="close" onClick={onClose}>X</button>
     {reservation.length > 0 ? reservation.map((x)=>(
     <div key={x.Id}>
     <input type="text" readOnly value={x.Id}/>
     <label>First Name:</label>
-    <input type="text" readOnly value={x.Guest.FirstName}/>
+    <input type="text" readOnly value={x.FirstName}/>
     <label>Last Name:</label>
-    <input type="text" readOnly value={x.Guest.LastName}/>
+    <input type="text" readOnly value={x.LastName}/>
     <label>Email:</label>
-    <input type="text" readOnly value={x.GuestEmail}/>
+    <input type="text" readOnly value={x.Email}/>
     <label>Room Number:</label>
     <input type="text" readOnly value={x.RoomNumber}/>
     <label>Check-in Date:</label>
@@ -104,22 +104,23 @@ export function CheckingOut({onClose}){
         try {
             const newData = await resp.json();
             setReservation(newData);
-            navigate("/sdashboard")
             console.log(newData);
-          } catch (error) {
+        } catch (error) {
             console.error(error);
-          }
+        }
+        alert("Guest has been checked out");
+        navigate("/sdashboard")
     }
 
-    return(<div>
+    return(<div className="form">
     <button className="close" onClick={onClose}>X</button>
     {reservation.length > 0 ? reservation.map((x)=>(
     <div key={x.Id}>
     <input type="text" readOnly value={x.Id}/>
     <label>First Name:</label>
-    <input type="text" readOnly value={x.Guest.FirstName}/>
+    <input type="text" readOnly value={x.FirstName}/>
     <label>Last Name:</label>
-    <input type="text" readOnly value={x.Guest.LastName}/>
+    <input type="text" readOnly value={x.LastName}/>
     <label>Email:</label>
     <input type="text" readOnly value={x.GuestEmail}/>
     <label>Room Number:</label>
@@ -132,7 +133,7 @@ export function CheckingOut({onClose}){
     <input type="text" readOnly value={x.Adults}/>
     <label>Number of Children:</label>
     <input type="text" readOnly value={x.Children}/>
-    <button onClick={() => CheckingOut(x)}>Check-In</button>
+    <button onClick={() => CheckingOut(x)}>Check-Out</button>
     </div>
     )): null}
     </div>)

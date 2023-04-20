@@ -71,9 +71,8 @@ function Home() {
       <div className="hotels">
   {availableHotels.map((hotel) => {
     const minPrice = Math.min(...hotel.Rooms.map((room) => room.BaseRate));
-
     return (
-      <div key={hotel.Id}>
+      <div key={hotel.Id} className="hotel-container">
         <img
           src={`data:image/png;base64,${hotel.Image}`}
           alt={hotel.Name}
@@ -84,7 +83,6 @@ function Home() {
         <p>Province: {hotel.Province}</p>
         <p>Description: {hotel.Description}</p>
         <p>From: ${minPrice}</p>
-
         <Link to={`/moreDetails/${hotel.Id}/${arrivalDate}/${departureDate}`}>
           <button>More Details</button>
         </Link>

@@ -48,12 +48,11 @@ function Overview()
         }
         fetchData();
       }, []);
-      const arrivingCount = reservations.filter(room => room.ArrivalDate === arrDate+"T00:00:00" && room.ReservationStatusId!==1).length;
-      console.log()
+      const arrivingCount = reservations.filter(room => room.ArrivalDate === arrDate+"T00:00:00" && room.ReservationStatusId!==1 &&room.ReservationStatusId!==2).length;
       const inHouseCount = reservations.filter(room => room.ReservationStatusId === 1).length;
-      const departingCount = reservations.filter(room => room.DepartureDate === arrDate+"T00:00:00").length;
+      const departingCount = reservations.filter(room => room.DepartureDate === arrDate+"T00:00:00" && room.ReservationStatusId ===1).length;
    return(<div className="overview">
-    <h1>Good morning {admin}, {HOTELID}</h1>
+    <h1>Good day, {admin}</h1>
     <div className="flex">
     <section>
         <h2>Availability</h2>
@@ -70,6 +69,7 @@ function Overview()
     </section>
     <section>
         <h2>Room Status</h2>
+        <h1 style={{color:"red"}}>OUT OF SERVICE</h1>
     </section>
     </div>
    </div>)

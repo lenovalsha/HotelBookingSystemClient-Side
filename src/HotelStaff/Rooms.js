@@ -6,7 +6,10 @@ export default function Rooms(){
         <div className="container">
       <TopBar />
         <Navbar />
+        <div className="staff">
+
         <ShowRooms/>
+        </div>
       
     </div>
     )
