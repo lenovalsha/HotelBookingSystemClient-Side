@@ -1,4 +1,4 @@
-export const BASEPATH = "http://172.18.31.118:7285/api/";
+export const BASEPATH = "http://localhost:7285/api/";
 export const COMPANY = "HotelOnTheGo";
 
 export async function hashPassword(password) {
